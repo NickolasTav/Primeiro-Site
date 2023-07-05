@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+          *{
+            box-sizing: border-box;
+          }
+
+          body{
+            width: 100%;
+            height: 100%;
+          }
+
+          form{
+            width: 300px;
+            height: 300px;
+            text-align: left;
+            margin: 100px auto;
+            background-color: rgba(86, 134, 202, 0.872);
+            text-transform: uppercase;
+            border-radius: 10px;
+          }
+          .input{
+            text-align: left;
+            display: block;
+          }
+
+          .voltar{
+            border-radius: 10px;
+            margin-left: 10px;
+            margin-top: 10px;
+            width: 100px;
+            height: 25px;
+            
+          }
+          .voltar:hover{
+            background-color: green;
+          }
+      
+    </style>
+</head>
+<body background="img/wall-mural-1559508_1280.jpg">
+    <header>
+      <div id="header">  
+    <a href="index.html" target="_self">
+        <img class="logo" src="img/logo-removebg-preview.png" alt="">
+    </a>
+    <a href="Conta.html" target="_self" style="float: right; padding-top: 170px; font-size: 25px; 
+            text-decoration: none; color: rgb(0, 0, 0);" href="#">
+        <img class="user" src="img/user.png" alt="user">  
+            Conta
+    </a> 
+    </div> 
+    </header>
+    <nav>
+    <div class="topnav">
+    <a href="index.html" target="_self">Pagina Inicial</a>
+    <a href="animaisestimacao.html" target="_self">Animais de Estimação</a>
+    <a href="biomasbrasileiros.html" target="_self">Biomas Brasileiros</a>
+   </div>
+   <main>
+    <section>
+      <button class="voltar" onclick="closeJ()">VOLTAR</button>
+
+
+        <form id="meuFormulario">     
+            <h3 style="text-align: center;">Validação de Cadastro</h3><br>
+            <p>
+                <label for="nome"> Nome Completo:</label>
+            <input class="input" type="text" placeholder="Nome" required maxlength="45"
+            id="nome">
+             
+            </p>
+           <p>
+             <label for="date">Data de Nascimento:</label>
+            <input class="input"  type="date" name="data" id="data" required>
+           </p>
+           <p>
+            <label for="email">E-mail:</label>
+            <input class="input"  type="email" placeholder="email@mail.com" id="email" required>
+           </p>
+           <p>
+            <label>
+                Telefone: <input class="input" type="text" placeholder="(xx)xxxxx-xxxx"
+                 required id="telefone"></label>
+           </p>
+           <p>
+                Nome de Usuario: <input class="input"  type="text" id="usuario" placeholder="Usuario" required>           
+           </p>
+           <p>
+                Senha: <input class="input"  type="password" id="senha" placeholder="**********" required>
+           </p>
+           <input id="cadastrar" type="submit" value="CADASTRAR">
+           <input id="cancelar" type="button" value="CANCELAR" onclick="limparFormulario()">
+        </form>  
+        <div id="resultado"></div><br><br>
+        
+        <footer>
+          <div class="footer">
+               Patos Wiki  
+          </div>
+       
+       </footer>
+    <script type="text/javascript">
+  document.getElementById("meuFormulario").addEventListener("submit", function(event) {
+    event.preventDefault(); // Impede o envio do formulário
+    exibirValores();
+  });
+ 
+  function exibirValores() {
+    var nome = document.getElementById("nome").value;    
+    var data = document.getElementById('data').value
+    var email = document.getElementById("email").value;
+    var telefone = document.getElementById('telefone').value;
+    if(!telefone.match(/^\(\d{2}\)\s\d{4,5}-\d{4}$/)){
+      alert("O número é invalido!\n Digite corretamente seguindo o padrão: (xx)9 9999-9999");
+      return;
+    }
+    var usuario = document.getElementById('usuario').value;    
+    var senha = document.getElementById('senha').value;
+    
+  let data_americana = data;
+  let data_brasileira = data_americana.split('-').reverse().join('/');
+  console.log(data_brasileira);
+    
+  var resultadoDiv = document.getElementById("resultado");
+    resultadoDiv.innerHTML ="<table><tr><td>Nome: " +nome + "</tr><tr><td>Data de Nascimento: " +data_brasileira +
+      "</tr><tr><td>E-mail: " + email + "</tr><tr><td>Tel: " + telefone + '</tr><tr><td>Usuario: ' +usuario + '</tr><tr><td>Senha: ' +senha;
+
+        if(nome != ""){
+          alert('Obrigado sr(a): ' + nome + ' os seus dados foram encaminhado com sucesso');
+        }
+  }
+
+  function limparFormulario() {
+    document.getElementById("meuFormulario").reset();
+    document.getElementById("resultado").innerHTML = "";
+  }
+
+  function closeJ() {
+
+    var fecharJ = window.open("index.html","_self");
+  }
+  
+
+</script>   
+
+    </section>
+    
+    
+</body>
+</html>
